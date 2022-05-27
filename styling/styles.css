@@ -10,7 +10,8 @@ header {
     width: 40vw;
     height: 10vh;
     border-radius: 5px;
-    left: 30vw;
+    left: 30vw
+    ;
     border: 1px solid #264653;
     justify-content: center;
     background-color: #264653;
