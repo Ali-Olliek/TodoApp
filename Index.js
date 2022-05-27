@@ -11,6 +11,7 @@ const note = class {
 
 var container = $("#container");
 
-container.append(
+var note_to_add = container.append(
   "<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi officia minus minima ad dolorem non expedita quibusdam totam dicta unde quam sint dignissimos optio, ut cum saepe molestiae debitis? Ducimus?</div>"
 );
+note_to_add.addClassList = "note"
