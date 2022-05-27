@@ -11,6 +11,8 @@ const note = class {
 
 var container = $("#container");
 
-container.append(
-  "<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi officia minus minima ad dolorem non expedita quibusdam totam dicta unde quam sint dignissimos optio, ut cum saepe molestiae debitis? Ducimus?</div>"
-);
+function addText() {
+  var div1 = document.getElementById("note");
+  div1.innerHTML = "<input type='text'/>";
+  addEventListener("keypress")
+}
