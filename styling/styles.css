@@ -22,6 +22,8 @@ header {
 }
 
 .cont {
+    display: flex;
+    flex-direction: column;
     position: relative;
     width: 90vw;
     border: 5px solid black;
@@ -46,6 +48,17 @@ header {
     background-color: #e9c46a;
 }
 
+.desc {
+    width: 100%;
+    margin-top: 10px;
+    height: 50px;
+    background-color: white;
+    border-radius: 5px;
+    border: 5px solid black;
+    padding: 10px;  
+    margin-top: 50px;
+}
+
 .note {
     width: 100%;
     margin-top: 10px;
@@ -56,8 +69,17 @@ header {
     padding: 10px;
 }
 
-.note:first-child {
-    margin-top: 50px;
+.note > p {
+    font-size: 8px;
+}
+
+.attr {
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    border: 3px solid black;
 }
 
 @media screen and (max-width:400px) {

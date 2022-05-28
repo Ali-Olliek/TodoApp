@@ -1,28 +1,41 @@
 const note = class {
     constructor (Id, Title, Description, Point, IsDone, CreatedAt) {
-        this.id = Id;
-        this.title = Title;
-        this.description = Description;
-        this.point = Point;
-        this.Isdone = IsDone;
-        this.CreatedAt = CreatedAt;
+      this.id = get_random_id();
+      this.title = $("#title").val();
+      this.description = $("#inputfield").val(); //https://stackoverflow.com/a/31080986
+      this.point = $("#prio").val();
+      this.Isdone = false;
+      this.CreatedAt = Date.now() / 3.154e10/30;
     }
+}
+
+get_random_id = () => {
+   return Math.floor(Math.random() * 1000);
 }
 
 let add_note = $("#addnote");
 let note_container = $("#container");
-let note_input = $("#inputfield")
+let note_input = $("#inputfield");
 
-$("#addnote").click(function(){
-  var written_note = document.createElement("p");
-  written_note.classList.add("note");
-  written_note.innerText = $("#inputfield").val(); //https://stackoverflow.com/a/31080986
-  note_container.append(written_note);
-  $("#inputfield").val("")
-  $(written_note).click(function(){
-    $(written_note).css("text-decoration","line-through")
-  })
-  $(written_note).dblclick(function(){
-    $(written_note).remove()
-  })
+
+$("#addnote").click(function() {
+  let created_note = new note();
+  let title = created_note.title;
+  let desc = created_note.description;
+  text_to_add = $("#container").append("<p>");
+  $("p").addClass("note")
+  $("p").append(desc);
+  $("#inputfield").val("");
+
+document.querySelectorAll(".note").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    $("p").css("text-decoration", "line-through");
+  });
+});
+
+document.querySelectorAll(".note").forEach((item) => {
+  item.addEventListener("dblclick", (event) => {
+    $("p").remove();
+  });
+});
 })
