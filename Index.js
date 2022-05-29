@@ -26,7 +26,10 @@ $("#addnote").click(function() {
   $("p").addClass("note")
   $("p").append(desc);
   $("#inputfield").val("");
-
+  $("#title").val("")
+  let note_list = [];
+  note_list.push(created_note);
+  localStorage.setItem("My Notes", JSON.stringify(note_list));
 document.querySelectorAll(".note").forEach((item) => {
   item.addEventListener("click", (event) => {
     $("p").css("text-decoration", "line-through");
