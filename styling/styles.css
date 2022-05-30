@@ -81,6 +81,7 @@ ul {
 .search {
     top: 110px;
     text-align: center;
+    width: 200px;
 }
 .sort:hover {
     background-color: #e9c46a;
@@ -128,7 +129,6 @@ ul {
         left: 0px;
     }
     .btn {
-
         font-size: 16px;
         height: auto;
         width: 100px;

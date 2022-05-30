@@ -49,7 +49,7 @@ $("#addnote").click(function() {
   // Create List of notes
   list_of_notes.push(created_note)
   console.log(list_of_notes)
-  
+
   // create JSON object
   note_list.push(created_note);
   localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
@@ -70,6 +70,34 @@ $("#addnote").click(function() {
   }
 })
 
+// search based on title or description 
+
+$('#search').keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+    var found_notes = []
+    for(let i = 0; i<list_of_notes.length; i++){
+      text_to_search = $("#search").val()
+      let found = Object.values(list_of_notes[i]).includes(text_to_search);
+      // store the found values in an array
+      if(found){
+        found_notes.push(list_of_notes[i])
+      // display the found notes
+        console.log(found_notes, "hello")
+
+      }
+          $("#notelist").html("")
+          for(let j = 0; j<found_notes.length; j++){
+          text = found_notes[j].description;
+          sorted_notes = $("#notelist").append("<li>");
+          $("#container ul li:last").append(text);
+          $("li").addClass("note");
+
+        }
+    }  
+  }
+});
+
 
 // Sort by prio
 
@@ -88,5 +116,5 @@ $("#sort").on("click", function(){
     $("li").addClass("note");
   console.log(list_of_notes)
   console.log(text)
-}
-  })
+  }
+})
