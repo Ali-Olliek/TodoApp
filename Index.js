@@ -16,6 +16,7 @@ get_random_id = () => {
 let add_note = $("#addnote");
 let note_list = $("#notelist");
 let note_input = $("#inputfield");
+let list_of_notes = []
 
 $("#addnote").click(function() {
   var created_note = new note();
@@ -23,22 +24,28 @@ $("#addnote").click(function() {
   text_to_add = $("#notelist").append("<li>");
   $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
   $("li").addClass("note")
-  
+
+  list_of_notes.push(created_note)
+  console.log(list_of_notes)
   // reset fields
   $("#inputfield").val("");
   $("#title").val("")
 
+ 
+  // delete and mark note as done
+  $(".note").on("click", function(){
+    created_note.Isdone = true;
+    $(this).closest("li").css("text-decoration", "line-through");
+  })
+  $(".note").on("dblclick", function(){
+    $(this).closest("li").remove()
+  })
+  
   // create JSON object
   let note_list = [];
   note_list.push(created_note);
   localStorage.setItem("My Notes", JSON.stringify(note_list));
   
-  // delete and mark note as done
-  $(".note").on("click", function(){
-    $(this).closest("li").css("text-decoration", "line-through");
-  })
-  $(".note").on("dblclick", function(){
-    $(this).closest("li").remove("li")
-  })
-
 })
+
+
