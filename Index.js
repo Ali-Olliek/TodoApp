@@ -21,23 +21,27 @@ let list_of_notes = []
 
 $("#addnote").click(function() {
   var created_note = new note();
-  let text_to_add = created_note.description
+  let text_to_add = created_note.description;
   text_to_add = $("#notelist").append("<li>");
   $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
   $("li").addClass("note")
-
+  
   
   // reset fields
   $("#inputfield").val("");
   $("#title").val("")
 
- 
+  
   // delete and mark note as done
-  created_note.id.on("click", function(){
-    this.Isdone = true;
-    console.log(list_of_notes)
-    $(this).closest("li").css("text-decoration", "line-through");
+  $(".note").each(function(){
+    $(this).on("click", function(){
+      $(this).closest("li").css("text-decoration", "line-through");
+      this.Isdone = true;
+      console.log(this.Isdone)
   })
+    
+  })
+  
   $(".note").on("dblclick", function(){
     $(this).closest("li").remove()
   })
