@@ -1,7 +1,7 @@
 AVO's Assignment
 Todo App, where the user is able to create Todos
 Todo data: Id, Title, Description, Point, IsDone, CreatedAt
-- by default Todos will be listed descending by creation date/time
+<!-- - by default Todos will be listed descending by creation date/time -->
 <!-- - user can change the arrangement based on the Point of the Todo -->
 - can search based on the Title & Description
 <!-- - can add update & delete Todo -->

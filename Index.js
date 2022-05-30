@@ -39,16 +39,21 @@ $("#addnote").click(function() {
       $(this).closest("li").css({"text-decoration":"line-through", "background-color":"#868686"});
       list_of_notes[index].Isdone=true;
   })
-    
-  })
-  
-  $(".note").on("dblclick", function(){
+
+    $(".note").on("dblclick", function(){
     $(this).closest("li").remove()
   })
 
+})
+
+  // DueDate
+  let due_date = $("#date").val()
+  if(due_date-Date.now<8.64e+7){
+  $("body").css("background-color","red")
+}
+
   // Create List of notes
   list_of_notes.push(created_note)
-  console.log(list_of_notes)
 
   // create JSON object
   note_list.push(created_note);
@@ -79,11 +84,12 @@ $('#search').keypress(function(event){
     for(let i = 0; i<list_of_notes.length; i++){
       text_to_search = $("#search").val()
       let found = Object.values(list_of_notes[i]).includes(text_to_search);
+
       // store the found values in an array
       if(found){
         found_notes.push(list_of_notes[i])
+
       // display the found notes
-        console.log(found_notes, "hello")
 
       }
           $("#notelist").html("")
@@ -114,7 +120,7 @@ $("#sort").on("click", function(){
     sorted_notes = $("#notelist").append("<li>");
     $("#container ul li:last").append(text);
     $("li").addClass("note");
-  console.log(list_of_notes)
-  console.log(text)
   }
 })
+
+
