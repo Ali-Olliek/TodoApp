@@ -38,7 +38,6 @@ $("#addnote").click(function() {
     $(this).on("click", function(){
       $(this).closest("li").css({"text-decoration":"line-through", "background-color":"#868686"});
       list_of_notes[index].Isdone=true;
-      console.log(list_of_notes[index])
   })
     
   })
@@ -50,12 +49,44 @@ $("#addnote").click(function() {
   // Create List of notes
   list_of_notes.push(created_note)
   console.log(list_of_notes)
-
+  
   // create JSON object
   note_list.push(created_note);
   localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
 
+  // default sort by time created 
+  list_of_notes.sort((note1,note2) => {
+    if(note1.point>note2.point){
+    return 1}else{
+      return -1
+    }
+  })
+    $("#notelist").html("")
+    for(let i = 0; i<list_of_notes.length;i++){
+      text = list_of_notes[i].description;
+      sorted_notes = $("#notelist").append("<li>");
+      $("#container ul li:last").append(text);
+      $("li").addClass("note");
+  }
 })
 
 
-  
+// Sort by prio
+
+$("#sort").on("click", function(){
+  list_of_notes.sort((note1,note2) => {
+    if(note1.point>note2.point){
+    return 1}else{
+      return -1
+    }
+  })
+  $("#notelist").html("")
+  for(let i = 0; i<list_of_notes.length;i++){
+    text = list_of_notes[i].description
+    sorted_notes = $("#notelist").append("<li>");
+    $("#container ul li:last").append(text);
+    $("li").addClass("note");
+  console.log(list_of_notes)
+  console.log(text)
+}
+  })
