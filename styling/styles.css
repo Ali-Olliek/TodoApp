@@ -47,6 +47,9 @@ header {
 .addnote:hover {
     background-color: #e9c46a;
 }
+ul {
+    list-style: none;
+}
 
 .desc {
     width: 100%;
