@@ -51,6 +51,10 @@ ul {
     list-style: none;
 }
 
+.done {
+    background-color: #868686;
+}
+
 .desc {
     width: 100%;
     margin-top: 10px;

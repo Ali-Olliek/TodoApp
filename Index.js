@@ -5,10 +5,11 @@ const note = class {
       this.description = $("#inputfield").val(); //https://stackoverflow.com/a/31080986
       this.point = $("#prio").val();
       this.Isdone = false;
-      this.CreatedAt = Date.now() / 3.154e10/30;
+      this.CreatedAt = Date.now() / mil_in_year;
     }
 }
 
+let mil_in_year = 3.154e+10;
 get_random_id = () => {
    return Math.floor(Math.random() * 1000);
 }
@@ -24,7 +25,7 @@ $("#addnote").click(function() {
   let text_to_add = created_note.description;
   text_to_add = $("#notelist").append("<li>");
   $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
-  $("li").addClass("note")
+  $("li").addClass("note");
   
   
   // reset fields
@@ -33,11 +34,11 @@ $("#addnote").click(function() {
 
   
   // delete and mark note as done
-  $(".note").each(function(){
+  $(".note").each(function(index){
     $(this).on("click", function(){
-      $(this).closest("li").css("text-decoration", "line-through");
-      this.Isdone = true;
-      console.log(this.Isdone)
+      $(this).closest("li").css({"text-decoration":"line-through", "background-color":"#868686"});
+      list_of_notes[index].Isdone=true;
+      console.log(list_of_notes[index])
   })
     
   })
