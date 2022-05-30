@@ -17,16 +17,22 @@ let add_note = $("#addnote");
 let note_list = $("#notelist");
 let note_input = $("#inputfield");
 
-
 $("#addnote").click(function() {
   var created_note = new note();
-  text_to_add = $("#container").append("<li>");
-  $("li").prev("li").append(created_note.description);
+  let text_to_add = created_note.description
+  text_to_add = $("#notelist").append("<li>");
+  $("#container ul li:last").append(note_input.val());
   $("li").addClass("note")
+  
+  // reset fields
   $("#inputfield").val("");
   $("#title").val("")
+
+  // create JSON object
   let note_list = [];
   note_list.push(created_note);
+
+  // delete and mark note as done
   localStorage.setItem("My Notes", JSON.stringify(note_list));
   $(".note").on("click", function(){
     $(this).closest("p").css("text-decoration", "line-through");
