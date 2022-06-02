@@ -63,6 +63,7 @@ let default_sort = function(array){
 
 $(document).ready(function () {
   main_list = create_main_list()
+  console.log(main_list);
   if(main_list != null){
     
     for(let i = 0; i<main_list.length;i++){
@@ -72,6 +73,17 @@ $(document).ready(function () {
       $("li").addClass("note");
 
   }      
+  $(".note").on("click", function () {
+    let chosen_index = $(this).index("li")
+    if(main_list[chosen_index].Isdone===false){
+      main_list[chosen_index].Isdone = true;
+      $(this).closest("li").css({ "text-decoration": "line-through", "background-color": "#868686" });
+      console.log(main_list)
+    }else{
+      main_list.splice(chosen_index);
+    }
+  });
+
 
   }else{
   return main_list = []
@@ -102,14 +114,6 @@ $("#addnote").click(function () {
     $("#inputfield").val("");
     $("#title").val("");
 
-    $(".note").on("click", function () {
-      $(this).closest("li").css({"text-decoration": "line-through","background-color": "#868686"});
-      console.log("hey");
-    });
-    $(".note").on("dblclick", function () {
-      $(this).closest("li").remove();
-    });
-
     // Create and merge List of notes and convert to JSON //
     if(main_list == null){
       list_of_notes=new_list;
@@ -117,7 +121,7 @@ $("#addnote").click(function () {
     }else{
       list_of_notes = new_list.concat(main_list);
       localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
-    }
+    }    
     location.reload()
   }
 });
@@ -135,7 +139,7 @@ $("#todo").click(function () {
   location.reload();
 });
 
-// search based on title or description 
+// ------Search----------//
 var search = function (array){
     $("#search").keypress(function (event) {
       var keycode = event.keyCode ? event.keyCode : event.which;
@@ -164,7 +168,8 @@ var search = function (array){
       }
     });
 }
-// Sort by prio
+
+// ------Sort-----------//
 var sort_by_prio = function (array){
   $("#sort").on("click", function(){
     array.sort((note1,note2) => {
