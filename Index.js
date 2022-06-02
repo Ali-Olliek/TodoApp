@@ -30,6 +30,19 @@ let mil_in_year = 3.154e+10;
 get_random_id = () => {
    return Math.floor(Math.random() * 1000);
 }
+// On Load
+
+$(document).ready(function () {
+  var loaded_notes = JSON.parse(localStorage.getItem('My Notes'));
+  for(let i = 0; i<loaded_notes.length; i++){
+  let text_to_add = loaded_notes[i].description;
+  console.log(text_to_add)
+  $("#notelist").append("<li>");
+  $("#container ul li:last").append(text_to_add); //https://stackoverflow.com/q/1145208/18590539
+  $("li").addClass("note");
+  }
+});
+
 
 let add_note = $("#addnote");
 let note_list = $("#notelist");

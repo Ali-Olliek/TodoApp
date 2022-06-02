@@ -21,8 +21,6 @@
                     <input id="title" class="attr title" type="text" placeholder="Add a Title">
                     <input id="title" class="attr short" type="text" placeholder="Title">
                     <input id="date" class="attr duedate" type="time" placeholder="Due Date">
-                    <button class="btn sort" id="sort">Sort by Priority</button>
-                    <button class="btn sort short" id="sort">Sort</button>
                     <input id="search" class="btn search" type="text" placeholder="Search by Title or Description">
                     <input id="search" class="btn search short" type="text" placeholder="Search">
                     <select name="priority" id="prio" class="attr">
@@ -33,9 +31,9 @@
                         <option value="5">Can Skip</option>
                     </select>
                     <ul class="tabs">
-                        <span>To do</span>
-                        <span>Done</span>
-                        <span>Important</span>
+                        <span id="todo">To do</span>
+                        <span id="done">Done</span>
+                        <span id="sort">Important</span>
                     </ul>
                     <ul id="notelist">
                     </ul>
