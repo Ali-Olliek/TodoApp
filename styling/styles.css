@@ -4,6 +4,14 @@
     box-sizing: border-box;;
 }
 
+html {
+    background: url(../assets/background\ white.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 header {
     width: 40vw;
     height: 10vh;
@@ -37,10 +45,10 @@ header {
 
 .addnote {
     position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 75px;
-    height: 25px;
+    top: 240px;
+    left: 65px;
+    width: 15vw;
+    height: 40px;
     border-radius: 10px;
     border: 3px solid black;
 }
@@ -64,24 +72,25 @@ ul {
     background-color: white;
     border-radius: 5px;
     border: 5px solid black;
-    padding: 10px;  
-    margin-top: 50px;
+    padding: 10px; 
 }
 
 .btn {
     position: absolute;
-    top: 165px;
-    right:10px;
+    right:5px;
     height: 50px;
-    width: 150px;
-    border-radius: 10px;
+    width: 20vw;
+    border-radius: 5px;
     border: 3px solid black;
 }
 
 .search {
-    top: 110px;
+    top: 125px;
     text-align: center;
-    width: 200px;
+    width: 30vw;
+}
+.sort {
+    top: 70px;
 }
 .sort:hover {
     background-color: #e9c46a;
@@ -102,7 +111,7 @@ ul {
 }
 
 .attr {
-    width: 200px;
+    width: 35vw;
     height: 50px;
     border-radius: 5px;
     padding: 5px;
@@ -115,6 +124,10 @@ ul {
         font-size: 1.2rem;
     }
 
+    .center {
+        width: 90%;
+        margin-left: 0;
+    }
     header {
         padding: 5px;
         width: 95vw;
