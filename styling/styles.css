@@ -182,13 +182,20 @@ input[type="time"]:focus::before {
     header {
         padding: 5px;
         width: 95vw;
-        height: 15vh;
+        height: 30vh;
     }
 
     .container {
         padding: 5px;
         width: 95vw;
         height: 120vh;
+    }
+    .tabs {
+        width: 100%;
+        margin-left: 0px;
+    }
+    .tabs > span{
+        font-size: 0.8rem;
     }
     .btn {
         font-size: 25px;
