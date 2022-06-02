@@ -57,7 +57,6 @@ $("#addnote").click(function() {
   $("#title").val("")
 
 
-
   // Create List of notes
   list_of_notes.push(created_note)
 
