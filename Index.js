@@ -41,7 +41,7 @@ let create_main_list = function(){
   return main_list
 }
 
-// On Load
+// ------Display Previous Notes On Load----- //
 
 $(document).ready(function () {
   main_list = create_main_list()
@@ -55,13 +55,15 @@ $(document).ready(function () {
   }
   }else{
   return main_list = []
-}
+  }
 });
 
-  let add_note = $("#addnote");
-  let note_list = $("#notelist");
-  let note_input = $("#inputfield");
-  let list_of_notes = [];
+// ------Add a Note------- //
+
+let add_note = $("#addnote");
+let note_list = $("#notelist");
+let note_input = $("#inputfield");
+let list_of_notes = [];
 
 $("#addnote").click(function () {
   main_list = create_main_list()
@@ -69,13 +71,9 @@ $("#addnote").click(function () {
   var created_note = new note();
   let text_to_add = created_note.description;
   new_list.push(created_note)
-  text_to_add = $("#notelist").append("<li>");
-  $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
-  $("li").addClass("note");
-  $("#inputfield").val("");
-  $("#title").val("");
+  
+// Create and merge List of notes and convert to JSON //
 
-// Create and merge List of notes and convert to JSON
   if(main_list == null){
     list_of_notes=new_list;
     localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
@@ -84,31 +82,25 @@ $("#addnote").click(function () {
     localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
   }
   
-// default sort by time created
-list_of_notes.sort((note1, note2) => {
-  if (note1.point > note2.point) {
-    return 1;
-  } else {
-    return -1;
-  }
-});
-$("#notelist").html("");
-for (let i = 0; i < list_of_notes.length; i++) {
-  text = list_of_notes[i].description;
-  sorted_notes = $("#notelist").append("<li>");
-  $("#container ul li:last").append(text);
+  text_to_add = $("#notelist").append("<li>");
+  $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
   $("li").addClass("note");
-}
+  $("#inputfield").val("");
+  $("#title").val("");
 });
 
-// DueDate
+// -------- DueDate ----------//
+
 let time_due = $("#date").val();
 if (time_due - Date.now < 8.64e7) {
   $("body").css("background-color", "red");
 }
+ 
+// -------Reload---------//
 
-
-  
+$("#todo").click(function () {
+  location.reload();
+});
 
 // search based on title or description 
 
@@ -136,7 +128,6 @@ $('#search').keypress(function(event){
     }  
   }
 });
-
 
 // Sort by prio
 
