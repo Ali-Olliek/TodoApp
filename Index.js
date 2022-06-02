@@ -2,17 +2,17 @@
 let quotes = ['"It always seems impossible until it is done"','"Start where you are. Use what you have. Do What you can"','"When something is important enough, you do it even if the odds are not in your favor"','"If you are going through hell, keep going"','"It does not matter how slowly you go as long as you do not stop"','"Veni vidi vici"','"If you can dream it, you can do it"'];
 let authors = ["Nelson Mandela","Arthur Ashe","Elon Musk","Winston Churchill","Confucius","Julius Ceasar","Walt Disney"]
 let weekdays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-let display_day = document.getElementById("day");
-let display_quotes = document.getElementById("quote");
-let display_author = document.getElementById("author");
+let display_day = $("#day");
+let display_quotes = $("#quote");
+let display_author = $("#author");
 const d = new Date();
 const index = d.getDay()-1;
 let day = weekdays[index];
 let quote_of_the_day = quotes[index];
 let quote_author = authors[index];
-display_author.innerHTML = quote_author;
-display_quotes.innerHTML = quote_of_the_day;
-display_day.innerHTML = day;
+$("#author").html(quote_author);
+$("#quote").html(quote_of_the_day);
+$("#day").html(day)
 
 //--------------------------//
 const note = class {
@@ -37,37 +37,26 @@ let note_input = $("#inputfield");
 let list_of_notes = []
 
 
-$("#addnote").click(function() {
+$("#addnote").click(function() {  
+  
+  // DueDate
+  let time_due = $("#date").val()
+  console.log(time_due)
+  if(time_due-Date.now<8.64e+7){
+  $("body").css("background-color","red")
+}
+
   var created_note = new note();
   let text_to_add = created_note.description;
   text_to_add = $("#notelist").append("<li>");
   $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
   $("li").addClass("note");
   
-  
   // reset fields
   $("#inputfield").val("");
   $("#title").val("")
 
-  
-  // delete and mark note as done
-  $(".note").each(function(index){
-    $(this).on("click", function(){
-      $(this).closest("li").css({"text-decoration":"line-through", "background-color":"#868686"});
-      list_of_notes[index].Isdone=true;
-  })
 
-    $(".note").on("dblclick", function(){
-    $(this).closest("li").remove()
-  })
-
-})
-
-  // DueDate
-  let due_date = $("#date").val()
-  if(due_date-Date.now<8.64e+7){
-  $("body").css("background-color","red")
-}
 
   // Create List of notes
   list_of_notes.push(created_note)
