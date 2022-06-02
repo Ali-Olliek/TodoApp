@@ -70,10 +70,13 @@ $(document).ready(function () {
       $("#notelist").append("<li>");
       $("#container ul li:last").append(text_to_add); //https://stackoverflow.com/q/1145208/18590539
       $("li").addClass("note");
-  }
+
+  }      
+
   }else{
   return main_list = []
-  }
+  }  
+  
 });
 
 // ------Add a Note------- //
@@ -84,10 +87,10 @@ let note_input = $("#inputfield");
 let list_of_notes = [];
 
 $("#addnote").click(function () {
-  console.log(note_input.val())
   main_list = create_main_list()
-  let new_list = []; // list of notes we are going to add
-  if (note_input.val()===""){ // Prevent adding empty notes
+  let new_list = [];                                       // list of notes we are going to add
+  if (note_input.val()===""){                             // Prevent adding empty notes
+    alert("Note is empty");
     return
   }else{
     var created_note = new note();
@@ -99,7 +102,13 @@ $("#addnote").click(function () {
     $("#inputfield").val("");
     $("#title").val("");
 
- 
+    $(".note").on("click", function () {
+      $(this).closest("li").css({"text-decoration": "line-through","background-color": "#868686"});
+      console.log("hey");
+    });
+    $(".note").on("dblclick", function () {
+      $(this).closest("li").remove();
+    });
 
     // Create and merge List of notes and convert to JSON //
     if(main_list == null){
@@ -109,16 +118,10 @@ $("#addnote").click(function () {
       list_of_notes = new_list.concat(main_list);
       localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
     }
+    location.reload()
   }
 });
 
-   // Mark as read and delete note
-document.querySelectorAll(".note").forEach((item) => {console.log("hey")
-  item.addEventListener("click", (event) => {
-    
-    $("li").css("text-decoration", "line-through");
-  });
-});
 // -------- DueDate ----------//
 
 let time_due = $("#date").val();

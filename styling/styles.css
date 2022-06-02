@@ -12,6 +12,15 @@ html {
     background-size: cover;
 }
 
+.toggled{
+    color: black;
+    background-color: #e9c46a;
+}
+
+
+.done {
+    background-color: red;
+}
 header {
     width: 40vw;
     height: 20vh;
@@ -130,6 +139,11 @@ input[type="time"]:focus::before {
     text-align: center;
     width: 30vw;
 }
+.prio_box1 {
+    width: 20px;
+    height: 20px;
+    border: 3px solid black;
+}
 .sort {
     top: 125px;
 }
@@ -153,7 +167,10 @@ input[type="time"]:focus::before {
 .note > p {
     font-size: 8px;
 }
-
+.prio1 {
+    background-color: red;
+    opacity: 0.3;
+}
 .attr {
     width: 35vw;
     height: 50px;
