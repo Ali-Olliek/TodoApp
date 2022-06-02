@@ -96,7 +96,9 @@ ul {
 .sort:hover {
     background-color: #e9c46a;
 }
-
+.short {
+    display: none;
+}
 .note {
     width: 100%;
     margin-top: 20px;
@@ -145,8 +147,18 @@ ul {
         width: 100px;
     }
     
+    .sort {
+        display: none;
+    }
     .search {
         top: 70px;
-        height: 50px;
+        height: 50px;    
     }
+    .title {
+        display: none;
+    }
+    .short {
+        display: block;
+    }
+
 }
