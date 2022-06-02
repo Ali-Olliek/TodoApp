@@ -33,66 +33,62 @@ get_random_id = () => {
 // On Load
 
 $(document).ready(function () {
-  var loaded_notes = JSON.parse(localStorage.getItem('My Notes'));
-  for(let i = 0; i<loaded_notes.length; i++){
-  let text_to_add = loaded_notes[i].description;
-  console.log(text_to_add)
-  $("#notelist").append("<li>");
-  $("#container ul li:last").append(text_to_add); //https://stackoverflow.com/q/1145208/18590539
-  $("li").addClass("note");
+  var loaded_notes = JSON.parse(localStorage.getItem("My Notes"));
+  for (let i = 0; i < loaded_notes.length; i++) {
+    let text_to_add = loaded_notes[i].description;
+    console.log(text_to_add);
+    $("#notelist").append("<li>");
+    $("#container ul li:last").append(text_to_add); //https://stackoverflow.com/q/1145208/18590539
+    $("li").addClass("note");
   }
-});
 
+  let add_note = $("#addnote");
+  let note_list = $("#notelist");
+  let note_input = $("#inputfield");
+  let list_of_notes = [];
 
-let add_note = $("#addnote");
-let note_list = $("#notelist");
-let note_input = $("#inputfield");
-let list_of_notes = []
-
-
-$("#addnote").click(function() {  
-  
-  // DueDate
-  let time_due = $("#date").val()
-  console.log(time_due)
-  if(time_due-Date.now<8.64e+7){
-  $("body").css("background-color","red")
-}
-
-  var created_note = new note();
-  let text_to_add = created_note.description;
-  text_to_add = $("#notelist").append("<li>");
-  $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
-  $("li").addClass("note");
-  
-  // reset fields
-  $("#inputfield").val("");
-  $("#title").val("")
-
-
-  // Create List of notes
-  list_of_notes.push(created_note)
-
-  // create JSON object
-  note_list.push(created_note);
-  localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
-
-  // default sort by time created 
-  list_of_notes.sort((note1,note2) => {
-    if(note1.point>note2.point){
-    return 1}else{
-      return -1
+  $("#addnote").click(function () {
+    // DueDate
+    let time_due = $("#date").val();
+    console.log(time_due);
+    if (time_due - Date.now < 8.64e7) {
+      $("body").css("background-color", "red");
     }
-  })
-    $("#notelist").html("")
-    for(let i = 0; i<list_of_notes.length;i++){
+
+    var created_note = new note();
+    let text_to_add = created_note.description;
+    text_to_add = $("#notelist").append("<li>");
+    $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
+    $("li").addClass("note");
+
+    // reset fields
+    $("#inputfield").val("");
+    $("#title").val("");
+
+    // Create List of notes
+    list_of_notes.push(created_note);
+
+    // create JSON object
+    note_list.push(created_note);
+    localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
+
+    // default sort by time created
+    list_of_notes.sort((note1, note2) => {
+      if (note1.point > note2.point) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    $("#notelist").html("");
+    for (let i = 0; i < list_of_notes.length; i++) {
       text = list_of_notes[i].description;
       sorted_notes = $("#notelist").append("<li>");
       $("#container ul li:last").append(text);
       $("li").addClass("note");
-  }
-})
-
+    }
+  });
+});
 // search based on title or description 
 
 $('#search').keypress(function(event){
