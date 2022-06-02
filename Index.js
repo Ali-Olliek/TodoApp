@@ -14,6 +14,14 @@ get_random_id = () => {
    return Math.floor(Math.random() * 1000);
 }
 
+// Display week day in header
+let weekdays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+let display_day = document.getElementById("day");
+const d = new Date();
+let day = weekdays[d.getDay()-1];
+display_day.innerHTML = day;
+
+
 let add_note = $("#addnote");
 let note_list = $("#notelist");
 let note_input = $("#inputfield");
