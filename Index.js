@@ -25,7 +25,9 @@ const note = class {
       this.description = $("#inputfield").val(); //https://stackoverflow.com/a/31080986
       this.point = $("#prio").val();
       this.Isdone = false;
-      this.CreatedAt = Date.now() / mil_in_year;
+      let d = new Date();
+      this.dueTime = $("#date").val();
+      this.CreatedAt = d.getHours();
     }
 }
 
@@ -63,7 +65,6 @@ let default_sort = function(array){
 
 $(document).ready(function () {
   main_list = create_main_list()
-  console.log(main_list);
   if(main_list != null){
     
     for(let i = 0; i<main_list.length;i++){
@@ -72,25 +73,23 @@ $(document).ready(function () {
       $("#container ul li:last").append(text_to_add); //https://stackoverflow.com/q/1145208/18590539
       $("li").addClass("note");
 
-  }      
+    }      
   $(".note").on("click", function () {
     let chosen_index = $(this).index("li")
-    if(main_list[chosen_index].Isdone===false){
+    notes_done = []
+    console.log(chosen_index)
+    if(main_list[chosen_index].Isdone){
+      notes_done.push(main_list[chosen_index]);
+      $(this).remove()
+    }else{
       main_list[chosen_index].Isdone = true;
       $(this).closest("li").css({ "text-decoration": "line-through", "background-color": "#868686" });
-      console.log(main_list)
-    }else{
-      main_list.splice(chosen_index);
     }
   });
-
-
   }else{
   return main_list = []
   }  
-  
 });
-
 // ------Add a Note------- //
 
 let add_note = $("#addnote");
@@ -128,11 +127,22 @@ $("#addnote").click(function () {
 
 // -------- DueDate ----------//
 
-let time_due = $("#date").val();
-if (time_due - Date.now < 8.64e7) {
-  $("body").css("background-color", "red");
+time_list = [];
+let mill_in_hour = 3.6e6;
+main_list=create_main_list();
+var date = new Date;
+let int_time = date.getHours();
+console.log(int_time)
+for(let i = 0; i<main_list.length;i++){
+  time_list.push(main_list[i].CreatedAt)
+  time_due = parseInt(main_list[i].dueTime)
+    if (time_due - int_time < 1) {
+      console.log("helloo")
+      console.log(main_list[i].description)
+      main_list[i].description.style.color = "red";
+  }
 }
- 
+
 // -------Reload---------//
 
 $("#todo").click(function () {
