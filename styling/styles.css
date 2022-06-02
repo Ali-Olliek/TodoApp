@@ -46,7 +46,7 @@ header {
 .addnote {
     position: absolute;
     top: 240px;
-    left: 65px;
+    left: 50px;
     width: 15vw;
     height: 40px;
     border-radius: 10px;
@@ -59,6 +59,7 @@ header {
 
 ul {
     list-style: none;
+    margin-top: 40px;
 }
 
 .done {
@@ -85,12 +86,12 @@ ul {
 }
 
 .search {
-    top: 125px;
+    top: 70px;
     text-align: center;
     width: 30vw;
 }
 .sort {
-    top: 70px;
+    top: 125px;
 }
 .sort:hover {
     background-color: #e9c46a;
@@ -98,7 +99,7 @@ ul {
 
 .note {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
     height: 50px;
     background-color: white;
     border-radius: 5px;
@@ -126,28 +127,26 @@ ul {
 
     .center {
         width: 90%;
-        margin-left: 0;
     }
+
     header {
         padding: 5px;
         width: 95vw;
         height: 20vh;
-        left: 0px;
     }
 
     .container {
         padding: 5px;
         width: 95vw;
         height: 120vh;
-        left: 0px;
     }
     .btn {
-        font-size: 16px;
-        height: auto;
+        font-size: 25px;
         width: 100px;
     }
     
     .search {
-        top: 110px;
+        top: 70px;
+        height: 50px;
     }
 }
