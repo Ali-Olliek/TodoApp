@@ -71,7 +71,12 @@ $("#addnote").click(function () {
   var created_note = new note();
   let text_to_add = created_note.description;
   new_list.push(created_note)
-  
+  text_to_add = $("#notelist").append("<li>");
+  $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
+  $("li").addClass("note");
+  $("#inputfield").val("");
+  $("#title").val("");
+
 // Create and merge List of notes and convert to JSON //
 
   if(main_list == null){
@@ -81,12 +86,6 @@ $("#addnote").click(function () {
     list_of_notes = new_list.concat(main_list);
     localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
   }
-
-  text_to_add = $("#notelist").append("<li>");
-  $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
-  $("li").addClass("note");
-  $("#inputfield").val("");
-  $("#title").val("");
 });
 
 // -------- DueDate ----------//
@@ -125,24 +124,30 @@ let default_sort = function(array){
 $('#search').keypress(function(event){
   var keycode = (event.keyCode ? event.keyCode : event.which);
   if(keycode == '13'){
+    console.log("hey");
+    list_of_notes=create_main_list()
     var found_notes = []
     for(let i = 0; i<list_of_notes.length; i++){
+      console.log("hey")
       text_to_search = $("#search").val()
       let found = Object.values(list_of_notes[i]).includes(text_to_search);
 
-    // store the found values in an array
+// store the found values in an array
+
     if(found){
       found_notes.push(list_of_notes[i])
       }
-    // display the found notes
+
+// display the found notes
+
       $("#notelist").html("")
       for(let j = 0; j<found_notes.length; j++){
-      text = found_notes[j].description;
-      sorted_notes = $("#notelist").append("<li>");
-      $("#container ul li:last").append(text);
-      $("li").addClass("note");
+        text = found_notes[j].description;
+        sorted_notes = $("#notelist").append("<li>");
+        $("#container ul li:last").append(text);
+        $("li").addClass("note");
 
-    }
+      }
     }  
   }
 });
@@ -150,6 +155,7 @@ $('#search').keypress(function(event){
 // Sort by prio
 
 $("#sort").on("click", function(){
+  list_of_notes = create_main_list()
   list_of_notes.sort((note1,note2) => {
     if(note1.point>note2.point){
     return 1}else{
