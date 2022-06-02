@@ -81,7 +81,7 @@ $("#addnote").click(function () {
     list_of_notes = new_list.concat(main_list);
     localStorage.setItem("My Notes", JSON.stringify(list_of_notes));
   }
-  
+
   text_to_add = $("#notelist").append("<li>");
   $("#container ul li:last").append(note_input.val()); //https://stackoverflow.com/q/1145208/18590539
   $("li").addClass("note");
@@ -101,6 +101,24 @@ if (time_due - Date.now < 8.64e7) {
 $("#todo").click(function () {
   location.reload();
 });
+
+// default sort by time created
+let default_sort = function(array){
+  array.sort((note1, note2) => {
+    if (note1.point > note2.point) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+  $("#notelist").html("");
+  for (let i = 0; i < array.length; i++) {
+    text = array[i].description;
+    sorted_notes = $("#notelist").append("<li>");
+    $("#container ul li:last").append(text);
+    $("li").addClass("note");
+  }
+}
 
 // search based on title or description 
 
