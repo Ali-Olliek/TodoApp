@@ -1,4 +1,4 @@
-// Display week day, quote of the day in header
+// Display week day, quote of the day and author in header
 let quotes = ['"It always seems impossible until it is done"','"Start where you are. Use what you have. Do What you can"','"When something is important enough, you do it even if the odds are not in your favor"','"If you are going through hell, keep going"','"It does not matter how slowly you go as long as you do not stop"','"Veni vidi vici"','"If you can dream it, you can do it"'];
 let authors = ["Nelson Mandela","Arthur Ashe","Elon Musk","Winston Churchill","Confucius","Julius Ceasar","Walt Disney"]
 let weekdays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -6,9 +6,10 @@ let display_day = document.getElementById("day");
 let display_quotes = document.getElementById("quote");
 let display_author = document.getElementById("author");
 const d = new Date();
-let day = weekdays[d.getDay()-1];
-let quote_of_the_day = quotes[d.getDay()-1];
-let quote_author = authors[d.getDay()-1];
+const index = d.getDay()-1;
+let day = weekdays[index];
+let quote_of_the_day = quotes[index];
+let quote_author = authors[index];
 display_author.innerHTML = quote_author;
 display_quotes.innerHTML = quote_of_the_day;
 display_day.innerHTML = day;
